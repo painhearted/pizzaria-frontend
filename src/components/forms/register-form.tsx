@@ -1,31 +1,41 @@
 "use client";
 
 
-import { useActionState } from 'react';
+import { useActionState, useEffect } from 'react';
 import {
     Card,
     CardHeader,
     CardTitle,
-    CardDescription,
-    CardContent,
-    CardFooter
+    CardContent
 } from '@/components/ui/card';
 import { Label } from '../ui/label';
-import { Input } from '@base-ui/react';
 import { Button } from '../ui/button';
 import Link from 'next/link';
-import { registerAction } from '@/actions/auth';
+import { registerAction, type RegisterState } from '@/actions/auth';
+import { useRouter } from 'next/navigation';
 
 
 export function RegisterForm() {
 
-    const [state, formAction, isPending] = useActionState(registerAction, null);
+    const [state, formAction, isPending] = useActionState<RegisterState | null, FormData>(
+        registerAction,
+        null
+    );
+    const router = useRouter();
+
+    useEffect(() => {
+
+        if (state?.success && state.redirectTo) {
+
+            router.replace(state.redirectTo);
+        }
+    }, [state, router])
 
     return(
 
         <Card className="bg-app-card border border-app-border w-full max-w-md mx-auto">
             <CardHeader>
-                <CardTitle className="text-white text-center text-3xl sm-text-4xl font-bold">
+                <CardTitle className="text-white text-center text-3xl sm:text-4xl font-bold">
                     Vorcaro <span className="text-brand-primary">Pizza</span></CardTitle>
             </CardHeader>
             <CardContent>
@@ -36,7 +46,7 @@ export function RegisterForm() {
                         <Label htmlFor="name" className="text-white">
                             Nome
                         </Label>
-                        <Input type="text"
+                        <input type="text"
                             id="name"
                             name="name"
                             placeholder="Digite seu nome"
@@ -52,7 +62,7 @@ export function RegisterForm() {
                         <Label htmlFor="email" className="text-white">
                             Email
                         </Label>
-                        <Input type="email"
+                        <input type="email"
                             id="email"
                             name="email"
                             placeholder="Digite seu email..."
@@ -67,7 +77,7 @@ export function RegisterForm() {
                         <Label htmlFor="password" className="text-white">
                             Senha
                         </Label>
-                        <Input type="password"
+                        <input type="password"
                             id="password"
                             name="password"
                             placeholder="Digite sua senha"
@@ -77,6 +87,12 @@ export function RegisterForm() {
                             />
                     </div>
 
+
+                    {state?.error && (
+                        <p className="text-sm text-red-400" role="alert">
+                            {state.error}
+                        </p>
+                    )}
 
                     <Button type="submit" className="w-full text-white bg-brand-primary hover:bg-brand-primary">
                         {isPending ? "Criando conta..." : "Criar conta"}
