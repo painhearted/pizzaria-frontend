@@ -1,6 +1,15 @@
 import { RegisterForm } from "@/components/forms/register-form";
+import { getUser } from "@/lib/auth";
+import { redirect } from "next/navigation";
 
-export default function Register() {
+export default async function Register() {
+
+    const user = await getUser();
+    
+    if(user) {
+    
+         redirect("/dashboard");
+    }
 
     return (
 

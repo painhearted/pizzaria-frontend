@@ -2,6 +2,7 @@
 
 import { AuthResponse, User } from '@/lib/types';
 import { apiClient } from '@/lib/api';
+import { setToken } from '@/lib/auth';
 
 export type RegisterState = {
     success: boolean;
@@ -73,7 +74,9 @@ export async function loginAction(
             body: JSON.stringify(data)
         });
 
-        console.log(response);
+
+        await setToken(response.token);
+        
         return { success: true, error: "", redirectTo: "/dashboard" };
 
     } catch(error) {
