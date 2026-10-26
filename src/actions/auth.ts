@@ -2,7 +2,8 @@
 
 import { AuthResponse, User } from '@/lib/types';
 import { apiClient } from '@/lib/api';
-import { setToken } from '@/lib/auth';
+import { removeToken, setToken } from '@/lib/auth';
+import { redirect } from 'next/navigation';
 
 export type RegisterState = {
     success: boolean;
@@ -88,4 +89,10 @@ export async function loginAction(
 
         return { success: false, error: "Erro ao fazer login"};
     }
+}
+
+export async function logOutAction() {
+
+    await removeToken();
+    redirect("/login");
 }
