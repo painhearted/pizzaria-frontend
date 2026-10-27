@@ -1,6 +1,9 @@
 import { requiredAdmin } from "@/lib/auth";
 import Sidebar from "@/components/dashboard/sidebar";
 import MobileSidebar from "@/components/dashboard/mobile-sidebar";
+import { connection } from "next/server";
+
+export const instant = false;
 
 export default async function DashboardLayout({
     children,
@@ -8,6 +11,7 @@ export default async function DashboardLayout({
     children: React.ReactNode
 }) {
 
+    await connection();
     const user = await requiredAdmin();
     return (
 

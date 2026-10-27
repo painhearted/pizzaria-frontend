@@ -24,7 +24,7 @@ export async function apiClient<T>(
 ): Promise<T> {
 
 
-    const { token, ...fetchOptions } = options;
+    const { token, tags, next, ...fetchOptions } = options;
 
     const headers: Record<string, string> = {
 
@@ -43,7 +43,14 @@ export async function apiClient<T>(
 
     const response = await fetch(`${API_URL}${endpoint}`, {
         ...fetchOptions,
-        headers
+        cache: fetchOptions.cache ?? (token ? 'no-store' : undefined),
+        ...(next || tags ? {
+            next: {
+                ...next,
+                ...(tags ? { tags } : {})
+            }
+        } : {}),
+        headers: headers
     });
 
     if(!response.ok) {

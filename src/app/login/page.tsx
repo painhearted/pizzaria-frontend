@@ -2,6 +2,8 @@ import { LoginForm } from "@/components/forms/login-form";
 import { getUser } from "@/lib/auth";
 import { redirect } from "next/navigation";
 
+export const instant = false;
+
 export default async function Login() {
 
     const user = await getUser();
