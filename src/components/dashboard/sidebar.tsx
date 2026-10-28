@@ -39,7 +39,7 @@ export default function Sidebar({ userName }: SidebarProps) {
 
     return ( 
 
-        <aside className=" hidden lg:flex flex-col h-screen w-64 border-r border-app-border bg-app-background">
+        <aside className="hidden h-[100dvh] w-64 shrink-0 flex-col border-r border-app-border bg-app-background lg:flex">
             {/* HEADER */}
 
             <div className="border-b border-app-border p-6">

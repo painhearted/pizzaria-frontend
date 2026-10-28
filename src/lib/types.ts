@@ -24,3 +24,16 @@ export interface Category {
     name: string;
     createdAt: string;
 }
+
+export interface Product {
+
+    id: string;
+    name: string;
+    price: number;
+    description: string;
+    category_id: string;
+    banner: string;
+    disabled: boolean;
+    createdAt: string;
+    category?: Pick<Category, "id" | "name">;
+}
