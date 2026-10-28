@@ -1,13 +1,13 @@
-
+import { Orders } from "@/components/dashboard/orders";
+import { getToken } from "@/lib/auth";
 
 
 export default async function Dashboard() {
 
+    const token = await getToken();
 
     return (
 
-        <div>
-            <h1>teste</h1>
-        </div>
+        <Orders token={token!}/>
     )
 }

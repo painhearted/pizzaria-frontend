@@ -37,3 +37,31 @@ export interface Product {
     createdAt: string;
     category?: Pick<Category, "id" | "name">;
 }
+
+export interface Items {
+
+    id: string,
+    amount: number,
+    product: {
+
+        id: string,
+        name: string,
+        price: number,
+        description: string,
+        banner: string,
+
+    }
+
+}
+
+export interface Order {
+
+    id: string,
+    table: number,
+    name?: string,
+    status: boolean, //false = produzindo, true = finalizado
+    draft: boolean, //true = rascunho(em produção), false = enviar para produção
+    createdAt: string,
+    items?: Items[];
+}
+
