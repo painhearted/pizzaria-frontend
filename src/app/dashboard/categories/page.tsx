@@ -7,13 +7,12 @@ import { Tags } from 'lucide-react';
 
 export const instant = false;
 
-
 export default async function Categories() {
 
     const token = await getToken();
     const categories = await apiClient<Category[]>("/category", {
 
-        token: (token! as string)
+        token: token ?? ""
     })
 
 
@@ -25,7 +24,7 @@ export default async function Categories() {
             <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 sm:gap-6">
 
                 <div>
-                    <h1 className="text-2xl sm:text-3x1 font-bold text-white">Categorias</h1>
+                    <h1 className="text-2xl sm:text-3xl font-bold text-white">Categorias</h1>
                     <p className="text-sm sm:text-base mt-1">Organize suas categorias.</p>
                 </div>
 

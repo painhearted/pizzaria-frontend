@@ -6,8 +6,8 @@ import { usePathname } from 'next/navigation';
 import { cn } from "@/lib/utils";
 import { Button } from "../ui/button";
 import { logOutAction } from "@/actions/auth";
-import { Sheet, SheetClose, SheetContent, SheetDescription, SheetFooter, SheetHeader, SheetTitle, SheetTrigger } from '@/components/ui/sheet'
-import { use, useState } from "react";
+import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from '@/components/ui/sheet'
+import { useState } from "react";
 
 const menuItems = [
     {
@@ -65,7 +65,7 @@ export default function MobileSidebar() {
                                             <Link
                                             href={menu.href}
                                             key={menu.title}
-                                            className={cn("flex items-center gap-3 px-3 py-2 text-sm rounded-md font-medium transtion-colors duration-300 text-white",
+                                            className={cn("flex items-center gap-3 px-3 py-2 text-sm rounded-md font-medium transition-colors duration-300 text-white",
                                                 isActive ? "bg-brand-primary text-white" : "hover:bg-brand-primary"
                                             )}
                                             >

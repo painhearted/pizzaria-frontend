@@ -23,9 +23,12 @@ export function Orders({ token }: OrdersProps) {
     const [loading, setLoading] = useState(true);
     const [orders, setOrders] = useState<Order[]>([]);
     const [selectedOrder, setSelectedOrder] = useState<null | string>(null);
+    const [error, setError] = useState<string | null>(null);
 
-    
-    const fetchOrders = async () => {
+    async function fetchOrders() {
+        setLoading(true);
+        setError(null);
+
         try {
 
             const response = await apiClient<Order[]>("/orders?draft=false", {
@@ -37,25 +40,16 @@ export function Orders({ token }: OrdersProps) {
             const pendingOrders = response.filter(order => !order.status)
 
             setOrders(pendingOrders);
-            setLoading(false);
-
-        } catch(error) {
-
+        } catch {
+            setError("Não foi possível carregar os pedidos.");
+        } finally {
             setLoading(false);
         }
-
     }
 
     useEffect(() => {
-
-        async function loadOrders() {
-
-            await fetchOrders();
-
-        }
-
-        loadOrders();
-    }, [])
+        void fetchOrders();
+    }, [token])
 
 
     const calculateOrderTotal = (order: Order) => {
@@ -76,7 +70,7 @@ export function Orders({ token }: OrdersProps) {
                 <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 sm:gap-6">
         
                     <div>
-                        <h1 className="text-2xl sm:text-3x1 font-bold text-white">Pedidos</h1>
+                        <h1 className="text-2xl sm:text-3xl font-bold text-white">Pedidos</h1>
                         <p className="text-sm sm:text-base mt-1">Gerencie os pedidos do seu cardápio.</p>
                     </div>
         
@@ -89,10 +83,13 @@ export function Orders({ token }: OrdersProps) {
                 </div>
 
 
-                {loading > true ? (
+                {loading ? (
                     <div>
                         <p className="text-center text-gray-300">Carregando pedidos...</p>
                     </div>
+
+                ) : error ? (
+                    <p className="text-center text-red-400" role="alert">{error}</p>
 
                 ) : orders.length === 0 ? (
 

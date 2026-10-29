@@ -24,7 +24,10 @@ export async function registerAction(
         if (
             typeof email !== "string" ||
             typeof name !== "string" ||
-            typeof password !== "string"
+            typeof password !== "string" ||
+            !email.trim() ||
+            !name.trim() ||
+            !password.trim()
         ) {
             return {
                 success: false,
@@ -62,11 +65,20 @@ export async function loginAction(
 
     try {
 
-        const email = formData.get("email") as string;
-        const password = formData.get("password") as string;
+        const email = formData.get("email");
+        const password = formData.get("password");
+
+        if (
+            typeof email !== "string" ||
+            typeof password !== "string" ||
+            !email.trim() ||
+            !password
+        ) {
+            return { success: false, error: "Preencha email e senha." };
+        }
 
         const data = {
-            email: email,
+            email: email.trim(),
             password: password,
         };
 

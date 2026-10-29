@@ -3,6 +3,7 @@
 import { deleteProductAction } from "@/actions/products";
 import { Button } from "@/components/ui/button";
 import { Trash } from "lucide-react";
+import { useState } from "react";
 import { useRouter } from "next/navigation";
 
 interface DeleteButtonProps {
@@ -14,6 +15,7 @@ export function DeleteButtonProduct({productId}: DeleteButtonProps) {
 
     
     const router = useRouter();
+    const [error, setError] = useState<string | null>(null);
 
     async function handleDeleteProduct () {
 
@@ -21,22 +23,21 @@ export function DeleteButtonProduct({productId}: DeleteButtonProps) {
 
         if(result.success) {
 
+            setError(null);
             router.refresh();
             return;
         }
 
-        if(result.error !== "") {
-
-            console.log(result)
-        }
+        setError(result.error || "Não foi possível excluir o produto.");
 
     }
 
     return (
-
-        <Button onClick={ handleDeleteProduct}>
-            <Trash className="w-5 h-5"/>
-        </Button>
-    )
+        <div className="flex items-center gap-2">
+            <Button type="button" onClick={handleDeleteProduct} aria-label="Excluir produto">
+                <Trash className="w-5 h-5"/>
+            </Button>
+            {error && <span className="sr-only" role="alert">{error}</span>}
+        </div>
+    );
 }
-

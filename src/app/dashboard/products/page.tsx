@@ -13,8 +13,8 @@ export default async function Products() {
 
     const token = await getToken();
     const [products, categories] = await Promise.all([
-        apiClient<Product[]>("/products?disabled=false", { token: token! }),
-        apiClient<Category[]>("/category", { token: token! }),
+        apiClient<Product[]>("/products?disabled=false", { token: token ?? "" }),
+        apiClient<Category[]>("/category", { token: token ?? "" }),
     ]);
 
     return (

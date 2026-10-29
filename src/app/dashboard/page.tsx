@@ -8,6 +8,6 @@ export default async function Dashboard() {
 
     return (
 
-        <Orders token={token!}/>
+        <Orders token={token ?? ""}/>
     )
 }

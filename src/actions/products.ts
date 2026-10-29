@@ -96,7 +96,7 @@ export async function deleteProductAction(productId: string) {
             return { success: false, error: "Token não fornecido" };
         }
 
-        await apiClient(`/product?product_id=${productId}`, {
+        await apiClient(`/product?product_id=${encodeURIComponent(productId)}`, {
             method: "DELETE",
             token,
         });

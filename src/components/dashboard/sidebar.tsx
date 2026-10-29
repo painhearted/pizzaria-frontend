@@ -61,7 +61,7 @@ export default function Sidebar({ userName }: SidebarProps) {
                         <Link
                         href={menu.href}
                         key={menu.title}
-                        className={cn("flex items-center gap-3 px-3 py-2 text-sm rounded-md font-medium transtion-colors duration-300",
+                        className={cn("flex items-center gap-3 px-3 py-2 text-sm rounded-md font-medium transition-colors duration-300",
                             isActive ? "bg-brand-primary text-white" : "hover:bg-brand-primary"
                         )}
                         >

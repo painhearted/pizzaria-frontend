@@ -34,6 +34,7 @@ export function OrderModal({ onClose, orderId, token }: OrderModalProps) {
             return;
         }
 
+        const currentOrderId = orderId;
         let isCurrentRequest = true;
 
         async function fetchOrder() {
@@ -42,7 +43,7 @@ export function OrderModal({ onClose, orderId, token }: OrderModalProps) {
                 setError(null);
 
                 const response = await apiClient<Order>(
-                    `/order/detail?order_id=${orderId}`,
+                    `/order/detail?order_id=${encodeURIComponent(currentOrderId)}`,
                     {
                         method: "GET",
                         token,
@@ -80,11 +81,11 @@ export function OrderModal({ onClose, orderId, token }: OrderModalProps) {
 
         if(!orderId) return;
 
-        const result = await finishOrderAction(orderId as string);
+        const result = await finishOrderAction(orderId);
 
         if (!result.success) {
 
-            console.log(result.error);
+            setError(result.error ?? "Não foi possível finalizar o pedido.");
         }
 
         if(result.success) {
@@ -208,6 +209,7 @@ export function OrderModal({ onClose, orderId, token }: OrderModalProps) {
                     </DialogClose>
                     <Button className="order-1 w-full bg-brand-primary text-brand-primary-foreground hover:bg-brand-primary sm:order-1"
                     onClick={handleFinishOrder}
+                    disabled={loading || !order || Boolean(error)}
                     >
                         Finalizar pedido
                     </Button>

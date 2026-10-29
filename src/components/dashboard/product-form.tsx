@@ -90,8 +90,13 @@ export function ProductForm({ categories }: ProductFormProps) {
 
         if(file) {
 
-            if(file.size > 5 * 1024 * 1024) {
-                setError("O tamanho da imagem não pode ultrapassar 5MB.");
+            if(file.size > 4 * 1024 * 1024) {
+                setError("O tamanho da imagem não pode ultrapassar 4 MB.");
+                return;
+            }
+
+            if (!["image/jpeg", "image/png"].includes(file.type)) {
+                setError("A imagem deve estar no formato JPG, JPEG ou PNG.");
                 return;
             }
 

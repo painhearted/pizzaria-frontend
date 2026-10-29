@@ -1,8 +1,11 @@
 
 
-const API_URL = process.env.NEXT_PUBLIC_API_URL as string;
+const API_URL = process.env.NEXT_PUBLIC_API_URL;
 
 export function getApiUrl() {
+    if (!API_URL) {
+        throw new Error("NEXT_PUBLIC_API_URL não está configurada.");
+    }
 
     return API_URL;
 }
@@ -41,7 +44,7 @@ export async function apiClient<T>(
         headers['Content-Type'] = 'application/json';
     }
 
-    const response = await fetch(`${API_URL}${endpoint}`, {
+    const response = await fetch(`${getApiUrl()}${endpoint}`, {
         ...fetchOptions,
         cache: fetchOptions.cache ?? (token ? 'no-store' : undefined),
         ...(next || tags ? {
@@ -61,6 +64,10 @@ export async function apiClient<T>(
     }
 
 
+
+    if (response.status === 204) {
+        return undefined as T;
+    }
 
     return response.json();
 }
