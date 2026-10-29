@@ -67,14 +67,14 @@ export function Orders({ token }: OrdersProps) {
 
             <div className="space-y-4 sm:space-y-6">
         
-                <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 sm:gap-6">
+                <div className="flex flex-col justify-between gap-4 rounded-2xl border border-app-border/50 bg-app-card/30 p-5 sm:flex-row sm:items-center sm:gap-6">
         
                     <div>
-                        <h1 className="text-2xl sm:text-3xl font-bold text-white">Pedidos</h1>
-                        <p className="text-sm sm:text-base mt-1">Gerencie os pedidos do seu cardápio.</p>
+                        <h1 className="text-3xl font-bold text-app-foreground sm:text-4xl">Pedidos</h1>
+                        <p className="mt-2 text-sm text-app-muted sm:text-base">Acompanhe os pedidos que estão no forno.</p>
                     </div>
         
-                    <Button className="bg-app-sidebard text-black hover:bg-white"
+                    <Button aria-label="Atualizar pedidos" className="bg-brand-primary text-brand-primary-foreground shadow-lg shadow-brand-primary/15 hover:bg-brand-primary/85"
                     onClick={fetchOrders}
                     >
                         <RefreshCcw className="w-5 h-5"/>
@@ -85,7 +85,7 @@ export function Orders({ token }: OrdersProps) {
 
                 {loading ? (
                     <div>
-                        <p className="text-center text-gray-300">Carregando pedidos...</p>
+                        <p className="text-center text-app-muted">Carregando pedidos...</p>
                     </div>
 
                 ) : error ? (
@@ -94,13 +94,13 @@ export function Orders({ token }: OrdersProps) {
                 ) : orders.length === 0 ? (
 
                     <div>
-                        <p className="text-center text-gray-300">Nenhum pedido encontrado.</p>
+                        <p className="text-center text-app-muted">Nenhum pedido encontrado.</p>
                     </div>
                 ) : (
                     <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
                         {orders.map( order => (
                             <Card key={order.id}
-                            className="bg-app-card border-app-border text-white"
+                            className="border-app-border/70 bg-app-card text-app-foreground shadow-lg shadow-black/10 transition-all hover:-translate-y-1 hover:border-brand-primary/70 hover:shadow-xl"
                             >
 
                                <CardHeader>
@@ -119,7 +119,7 @@ export function Orders({ token }: OrdersProps) {
                                     {order.items && order.items.length > 0 && (
                                         <div className="space-y-1">
                                             {order.items.slice(0, 2).map(item => (
-                                                <p key={item.id} className="text-xs sm:text-sm text-gray-300 truncate">
+                                                <p key={item.id} className="truncate text-xs text-app-muted sm:text-sm">
                                                    - {item.amount}x {item.product.name}
                                                 </p>
                                             ))}
@@ -130,7 +130,7 @@ export function Orders({ token }: OrdersProps) {
                                 <div className="flex flex-col xl:flex-row items-center justify-between pt-4 border-t border-app-border gap-4">
 
                                     <div className="self-start ">
-                                        <p className="text-sm md:text-base text-gray-400 ">Total</p>
+                                        <p className="text-sm text-app-muted md:text-base">Total</p>
                                         <p className="text-base lg:text-lg font-bold text-brand-primary">
                                             {formatPrice(calculateOrderTotal(order))}
                                         </p>
@@ -138,8 +138,8 @@ export function Orders({ token }: OrdersProps) {
 
                                     <Button
                                     size="sm"
-                                    className="bg-brand-primary
-                                    hover:bg-brand-primary
+                                    className="bg-brand-primary font-bold text-brand-primary-foreground
+                                    hover:bg-brand-primary/85
                                     w-full
                                     lg:w-auto"
                                     onClick={ () => setSelectedOrder(order.id)}>

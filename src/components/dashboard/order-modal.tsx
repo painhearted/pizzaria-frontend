@@ -106,7 +106,7 @@ export function OrderModal({ onClose, orderId, token }: OrderModalProps) {
             }}
         >
             <DialogContent
-                className="border-app-border bg-app-card p-4 text-white sm:max-w-md sm:p-5"
+                className="border-app-border bg-app-card p-4 text-app-foreground shadow-2xl sm:max-w-md sm:p-5"
             >
                 <DialogHeader className="items-center gap-0">
                     <DialogTitle className="text-center text-lg font-bold">
@@ -115,7 +115,7 @@ export function OrderModal({ onClose, orderId, token }: OrderModalProps) {
                 </DialogHeader>
 
                 {loading ? (
-                    <p className="py-6 text-center text-gray-300">
+                    <p className="py-6 text-center text-app-muted">
                         Carregando detalhes...
                     </p>
                 ) : error ? (
@@ -126,19 +126,19 @@ export function OrderModal({ onClose, orderId, token }: OrderModalProps) {
                     <div className="space-y-4">
                         <div className="grid grid-cols-3 gap-3 text-xs">
                             <div>
-                                <p className="mb-1 text-[10px] text-gray-400">
+                                <p className="mb-1 text-[10px] text-app-muted">
                                     Nome da categoria
                                 </p>
                                 <p className="font-semibold">Mesa {order.table}</p>
                             </div>
                             <div>
-                                <p className="mb-1 text-[10px] text-gray-400">Cliente</p>
+                                <p className="mb-1 text-[10px] text-app-muted">Cliente</p>
                                 <p className="font-semibold">
                                     {order.name || "Não informado"}
                                 </p>
                             </div>
                             <div>
-                                <p className="mb-1 text-[10px] text-gray-400">Status</p>
+                                <p className="mb-1 text-[10px] text-app-muted">Status</p>
                                 <Badge className="bg-brand-primary px-2 text-[10px] text-brand-primary-foreground hover:bg-brand-primary">
                                     Em produção
                                 </Badge>
@@ -152,22 +152,22 @@ export function OrderModal({ onClose, orderId, token }: OrderModalProps) {
                                     {order.items.map((item) => (
                                         <div
                                             key={item.id}
-                                            className="rounded-md border border-app-border bg-app-background p-2.5 text-xs"
+                                            className="rounded-xl border border-app-border/70 bg-app-background/70 p-2.5 text-xs"
                                         >
                                             <div className="flex items-start justify-between gap-3">
                                                 <div className="min-w-0">
                                                     <p className="font-semibold">
                                                         {item.product.name}
                                                     </p>
-                                                    <p className="mt-1 text-[10px] text-gray-400">
+                                                    <p className="mt-1 text-[10px] text-app-muted">
                                                         {item.product.description}
                                                     </p>
-                                                    <p className="mt-1 text-[10px] text-gray-400">
+                                                    <p className="mt-1 text-[10px] text-app-muted">
                                                         {formatPrice(item.product.price)} x {item.amount}
                                                     </p>
                                                 </div>
                                                 <div className="shrink-0 text-right">
-                                                    <p className="text-[10px] text-gray-400">
+                                                    <p className="text-[10px] text-app-muted">
                                                         Quantidade: {item.amount}
                                                     </p>
                                                     <p className="mt-1 font-bold">
@@ -181,7 +181,7 @@ export function OrderModal({ onClose, orderId, token }: OrderModalProps) {
                                     ))}
                                 </div>
                             ) : (
-                                <p className="text-sm text-gray-400">
+                                <p className="text-sm text-app-muted">
                                     Nenhum item encontrado.
                                 </p>
                             )}
@@ -201,7 +201,7 @@ export function OrderModal({ onClose, orderId, token }: OrderModalProps) {
                         render={
                             <Button
                                 variant="outline"
-                                className="order-2 w-full border-app-border bg-transparent text-white hover:bg-app-background hover:text-white sm:order-2"
+                                className="order-2 w-full border-app-border bg-transparent text-app-foreground hover:bg-app-background hover:text-app-foreground sm:order-2"
                             />
                         }
                     >

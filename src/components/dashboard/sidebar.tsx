@@ -1,6 +1,6 @@
 "use client";
 
-import { Package, ShoppingCart, Tags, LogOut } from "lucide-react";
+import { Package, ShoppingCart, Tags, LogOut, Pizza } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from 'next/navigation';
 import { cn } from "@/lib/utils";
@@ -39,14 +39,17 @@ export default function Sidebar({ userName }: SidebarProps) {
 
     return ( 
 
-        <aside className="hidden h-[100dvh] w-64 shrink-0 flex-col border-r border-app-border bg-app-background lg:flex">
+        <aside className="hidden h-[100dvh] w-72 shrink-0 flex-col border-r border-app-border/70 bg-app-background/95 lg:flex">
             {/* HEADER */}
 
-            <div className="border-b border-app-border p-6">
-                <h2 className="text-xl font-bold text-white">
-                    Vorcaro<span className="text-brand-primary"> Pizza's</span>
+            <div className="border-b border-app-border/70 p-6">
+                <h2 className="flex items-center gap-3 text-2xl font-bold text-app-foreground">
+                    <span className="flex size-10 items-center justify-center rounded-full bg-brand-primary text-brand-primary-foreground">
+                        <Pizza className="size-5" aria-hidden="true" />
+                    </span>
+                    <span>Vorcaro<span className="text-brand-primary"> Pizza</span></span>
                 </h2>
-                <p className="text-sm text-gray-300 mt-1"> Olá, {userName}!</p>
+                <p className="mt-3 text-sm text-app-muted">Olá, {userName}!</p>
             </div>
 
 
@@ -61,8 +64,8 @@ export default function Sidebar({ userName }: SidebarProps) {
                         <Link
                         href={menu.href}
                         key={menu.title}
-                        className={cn("flex items-center gap-3 px-3 py-2 text-sm rounded-md font-medium transition-colors duration-300",
-                            isActive ? "bg-brand-primary text-white" : "hover:bg-brand-primary"
+                        className={cn("flex items-center gap-3 rounded-xl px-4 py-3 text-sm font-bold transition-all duration-300",
+                            isActive ? "bg-brand-primary text-brand-primary-foreground shadow-lg shadow-brand-primary/15" : "text-app-muted hover:bg-app-card hover:text-app-foreground"
                         )}
                         >
 
@@ -74,12 +77,12 @@ export default function Sidebar({ userName }: SidebarProps) {
                 })}
             </nav>
 
-            <div className="border-t border-app-border p-4">
+            <div className="border-t border-app-border/70 p-4">
                 <form action={logOutAction}>
                     <Button
                         type="submit" 
                         variant="ghost"
-                        className="w-full justify-start gap-3 text-white hover:text-white hover:bg-transparent"
+                        className="w-full justify-start gap-3 text-app-muted hover:bg-app-card hover:text-app-foreground"
                     >
                         <LogOut className="w-5 h-5"/>
 

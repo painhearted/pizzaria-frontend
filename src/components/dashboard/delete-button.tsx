@@ -35,7 +35,7 @@ export function DeleteButtonProduct({productId}: DeleteButtonProps) {
     return (
         <div className="flex items-center gap-2">
             <Button type="button" onClick={handleDeleteProduct} aria-label="Excluir produto">
-                <Trash className="w-5 h-5"/>
+                <Trash className="w-4 h-4"/>
             </Button>
             {error && <span className="sr-only" role="alert">{error}</span>}
         </div>

@@ -56,7 +56,7 @@ export function CategoryForm() {
             </DialogTrigger>
 
 
-            <DialogContent className="p-6 sm:p-6 bg-app-card text-white">
+            <DialogContent className="border-app-border bg-app-card p-6 text-app-foreground sm:p-6">
                 <DialogHeader>
                     <DialogTitle>
                         Criar nova categoria
@@ -75,7 +75,7 @@ export function CategoryForm() {
                             name="name"
                             required
                             placeholder="Digite o nome da categoria"
-                            className="border-app-border bg-app-background text-white"
+                            className="border-app-border bg-app-background text-app-foreground placeholder:text-app-muted/70"
                         />
                     </div>
 
@@ -85,7 +85,7 @@ export function CategoryForm() {
                         </p>
                     )}
 
-                    <Button type="submit" className="w-full bg-brand-primary text-white hover:bg-brand-primary">
+                    <Button type="submit" className="w-full bg-brand-primary font-bold text-brand-primary-foreground hover:bg-brand-primary/85">
                         Criar categoria
                     </Button>
 

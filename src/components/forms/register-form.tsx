@@ -13,6 +13,7 @@ import { Button } from '../ui/button';
 import Link from 'next/link';
 import { registerAction, type RegisterState } from '@/actions/auth';
 import { useRouter } from 'next/navigation';
+import { Pizza } from 'lucide-react';
 
 
 export function RegisterForm() {
@@ -33,9 +34,12 @@ export function RegisterForm() {
 
     return(
 
-        <Card className="bg-app-card border border-app-border w-full max-w-md mx-auto">
-            <CardHeader>
-                <CardTitle className="text-white text-center text-3xl sm:text-4xl font-bold">
+        <Card className="w-full max-w-md mx-auto border-app-border/80 bg-app-card/95 text-app-foreground shadow-2xl shadow-black/25">
+            <CardHeader className="items-center gap-3 pb-3">
+                <div className="flex size-14 items-center justify-center rounded-full bg-brand-primary text-brand-primary-foreground shadow-lg shadow-brand-primary/20">
+                    <Pizza className="size-8" aria-hidden="true" />
+                </div>
+                <CardTitle className="text-center text-4xl font-bold">
                     Vorcaro <span className="text-brand-primary">Pizza</span></CardTitle>
             </CardHeader>
             <CardContent>
@@ -43,7 +47,7 @@ export function RegisterForm() {
                     {/* Formulário de registro */}
 
                     <div className="flex flex-col gap-6">
-                        <Label htmlFor="name" className="text-white">
+                        <Label htmlFor="name" className="text-app-foreground">
                             Nome
                         </Label>
                         <input type="text"
@@ -52,14 +56,14 @@ export function RegisterForm() {
                             placeholder="Digite seu nome"
                             required
                             minLength={3}
-                            className="text-white bg-app-card border border-app-border"
+                            className="border-app-border bg-app-background/70 text-app-foreground placeholder:text-app-muted/70"
                             />
                     </div>
 
 
 
                     <div className="space-y-4">
-                        <Label htmlFor="email" className="text-white">
+                        <Label htmlFor="email" className="text-app-foreground">
                             Email
                         </Label>
                         <input type="email"
@@ -67,14 +71,14 @@ export function RegisterForm() {
                             name="email"
                             placeholder="Digite seu email..."
                             required
-                            className="text-white bg-app-card border border-app-border"
+                            className="border-app-border bg-app-background/70 text-app-foreground placeholder:text-app-muted/70"
                             />
                     </div>
 
 
 
                     <div className="space-y-4">
-                        <Label htmlFor="password" className="text-white">
+                        <Label htmlFor="password" className="text-app-foreground">
                             Senha
                         </Label>
                         <input type="password"
@@ -83,7 +87,7 @@ export function RegisterForm() {
                             placeholder="Digite sua senha"
                             required
                             minLength={3}
-                            className="text-white bg-app-card border border-app-border"
+                            className="border-app-border bg-app-background/70 text-app-foreground placeholder:text-app-muted/70"
                             />
                     </div>
 
@@ -94,11 +98,11 @@ export function RegisterForm() {
                         </p>
                     )}
 
-                    <Button type="submit" className="w-full text-white bg-brand-primary hover:bg-brand-primary">
+                    <Button type="submit" className="w-full bg-brand-primary font-bold text-brand-primary-foreground hover:bg-brand-primary/85">
                         {isPending ? "Criando conta..." : "Criar conta"}
                     </Button>
 
-                    <p className="text-center text-sm text-gray-100">
+                    <p className="text-center text-sm text-app-muted">
                         Já tem uma conta?
                         <Link href="/login" className="text-brand-primary font-semibold">
                          Faça o login

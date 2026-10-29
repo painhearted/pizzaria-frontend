@@ -14,7 +14,7 @@ export default async function DashboardLayout({
     const user = await requiredAdmin();
 
     return (
-        <div className="flex h-[100dvh] overflow-hidden bg-app-background text-white">
+        <div className="flex h-[100dvh] overflow-hidden bg-app-background text-app-foreground">
             <Sidebar userName={user.name} />
             <div className="flex h-full min-w-0 flex-1 flex-col overflow-hidden">
                 <MobileSidebar />

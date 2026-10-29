@@ -13,6 +13,7 @@ import { Button } from '../ui/button';
 import Link from 'next/link';
 import { loginAction } from '@/actions/auth';
 import { useRouter } from 'next/navigation';
+import { Pizza } from 'lucide-react';
 
 
 
@@ -34,17 +35,20 @@ export function LoginForm() {
 
     return(
 
-        <Card className="bg-app-card border border-app-border w-full max-w-md mx-auto">
-            <CardHeader>
-                <CardTitle className="text-white text-center text-3xl sm:text-4xl font-bold">
+        <Card className="mx-auto w-full max-w-md rounded-3xl border-app-border/80 bg-app-card/95 px-2 py-4 text-app-foreground shadow-2xl shadow-black/25 sm:px-4 sm:py-6">
+            <CardHeader className="w-full items-center gap-4 pb-5 text-center">
+                <div className="mx-auto flex size-16 items-center justify-center rounded-full bg-brand-primary text-brand-primary-foreground shadow-lg shadow-brand-primary/20">
+                    <Pizza className="size-8" aria-hidden="true" />
+                </div>
+                <CardTitle className="text-center text-4xl font-bold">
                     Vorcaro <span className="text-brand-primary">Pizza</span></CardTitle>
             </CardHeader>
             <CardContent>
-                <form className="space-y-4" action={formAction}>
+                <form className="space-y-6" action={formAction}>
                     {/* Formulário de Login */}
 
-                    <div className="space-y-4">
-                        <Label htmlFor="email" className="text-white">
+                    <div className="mx-auto w-full max-w-sm space-y-2">
+                        <Label htmlFor="email" className="text-app-foreground">
                             Email
                         </Label>
                         <input type="email"
@@ -52,14 +56,14 @@ export function LoginForm() {
                             name="email"
                             placeholder="Digite seu email..."
                             required
-                            className="text-white bg-app-card border border-app-border"
+                            className="h-11 rounded-xl border-app-border bg-app-background/70 px-4 text-app-foreground placeholder:text-app-muted/70"
                             />
                     </div>
 
 
 
-                    <div className="space-y-4">
-                        <Label htmlFor="password" className="text-white">
+                    <div className="mx-auto w-full max-w-sm space-y-2">
+                        <Label htmlFor="password" className="text-app-foreground">
                             Senha
                         </Label>
                         <input type="password"
@@ -68,12 +72,12 @@ export function LoginForm() {
                             placeholder="Digite sua senha"
                             required
                             minLength={3}
-                            className="text-white bg-app-card border border-app-border"
+                            className="h-11 rounded-xl border-app-border bg-app-background/70 px-4 text-app-foreground placeholder:text-app-muted/70"
                             />
                     </div>
 
 
-                    <Button type="submit" className="w-full text-white bg-brand-primary hover:bg-brand-primary">
+                    <Button type="submit" className="h-11 w-full rounded-xl bg-brand-primary font-bold text-brand-primary-foreground hover:bg-brand-primary/85">
                         {isPending ? "Acessando conta..." : "Acessar"}
                     </Button>
 
@@ -84,9 +88,9 @@ export function LoginForm() {
                         </div>
                     )}
 
-                    <p className="text-center text-sm text-gray-100">
-                        Ainda não possui uma conta?
-                        <Link href="/register" className="text-brand-primary font-semibold">
+                    <p className="flex flex-wrap justify-center gap-x-2 gap-y-1 text-center text-sm text-app-muted">
+                        <span>Ainda não possui uma conta?</span>
+                        <Link href="/register" className="font-semibold text-brand-primary hover:underline">
                          Crie uma conta
                         </Link>
                     </p>

@@ -21,11 +21,11 @@ export default async function Categories() {
 
         <div className="space-y-4 sm:space-y-6">
 
-            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 sm:gap-6">
+            <div className="flex flex-col justify-between gap-4 rounded-2xl border border-app-border/50 bg-app-card/30 p-5 sm:flex-row sm:items-center sm:gap-6">
 
                 <div>
-                    <h1 className="text-2xl sm:text-3xl font-bold text-white">Categorias</h1>
-                    <p className="text-sm sm:text-base mt-1">Organize suas categorias.</p>
+                    <h1 className="text-3xl font-bold text-app-foreground sm:text-4xl">Categorias</h1>
+                    <p className="mt-2 text-sm text-app-muted sm:text-base">Organize os sabores do seu cardápio.</p>
                 </div>
 
                 <CategoryForm/>
@@ -37,7 +37,7 @@ export default async function Categories() {
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-6">
                     {categories.map( category => (
 
-                        <Card key={category.id} className="bg-app-card border-app-border transition-shadow hover:shadow-md text-white">
+                        <Card key={category.id} className="border-app-border/70 bg-app-card text-app-foreground shadow-lg shadow-black/10 transition-all hover:-translate-y-1 hover:border-brand-primary/70 hover:shadow-xl">
                             <CardHeader>
                                 <CardTitle className="gap-2 flex items-center text-base md:text-lg">
                                     <Tags className="w-5 h-5"/>
@@ -46,8 +46,8 @@ export default async function Categories() {
                             </CardHeader>
 
                             <CardContent>
-                                <p className="text-gray-200 text-sm">
-                                    {category.id}
+                                <p className="text-app-muted text-sm">
+                                    Código: {category.id.slice(0, 8)}
                                 </p>
                             </CardContent>
                         </Card>

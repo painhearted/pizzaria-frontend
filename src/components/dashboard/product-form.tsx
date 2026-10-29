@@ -128,7 +128,7 @@ export function ProductForm({ categories }: ProductFormProps) {
                 Novo produto
             </DialogTrigger>
 
-            <DialogContent className="max-h-[90vh] overflow-y-auto bg-app-card p-6 text-white sm:p-6">
+            <DialogContent className="max-h-[90vh] overflow-y-auto border-app-border bg-app-card p-6 text-app-foreground sm:p-6">
                 <DialogHeader>
                     <DialogTitle>Criar novo produto</DialogTitle>
                     <DialogDescription>
@@ -144,7 +144,7 @@ export function ProductForm({ categories }: ProductFormProps) {
                             name="name"
                             required
                             placeholder="Ex.: Margherita"
-                            className="border-app-border bg-app-background text-white"
+                            className="border-app-border bg-app-background text-app-foreground placeholder:text-app-muted/70"
                         />
                     </div>
 
@@ -157,7 +157,7 @@ export function ProductForm({ categories }: ProductFormProps) {
                             inputMode="decimal"
                             required
                             placeholder="Ex.: 45,00"
-                            className="border-app-border bg-app-background text-white"
+                            className="border-app-border bg-app-background text-app-foreground placeholder:text-app-muted/70"
                             value={priceValue}
                             onChange={ handlePriceChange }
                         />
@@ -170,7 +170,7 @@ export function ProductForm({ categories }: ProductFormProps) {
                             name="description"
                             required
                             placeholder="Ex.: Molho, queijo e manjericão"
-                            className="border-app-border bg-app-background text-white"
+                            className="border-app-border bg-app-background text-app-foreground placeholder:text-app-muted/70"
                         />
                     </div>
 
@@ -183,11 +183,11 @@ export function ProductForm({ categories }: ProductFormProps) {
                         >
                             <SelectTrigger
                             id="category_id"
-                            className="h-8 w-full cursor-pointer border-app-border bg-app-background px-2.5 text-white focus-visible:ring-3 focus-visible:ring-ring/50"
+                            className="h-8 w-full cursor-pointer border-app-border bg-app-background px-2.5 text-app-foreground focus-visible:ring-3 focus-visible:ring-ring/50"
                             >
                                 <SelectValue placeholder="Selecione uma categoria" />
                             </SelectTrigger>
-                            <SelectContent className="border-app-border bg-app-background text-white">
+                            <SelectContent className="border-app-border bg-app-background text-app-foreground">
                             {categories.map((category) => (
                                 <SelectItem key={category.id} value={category.id}>
                                     {category.name}
@@ -232,7 +232,7 @@ export function ProductForm({ categories }: ProductFormProps) {
                             </div>
                         ) : (
                             <div className="border-2 border-dashed rounded-md p-8 flex flex-col items-center justify-center">
-                                <Upload className="h-8 w-8 mx-auto text-white mb-2"/>
+                                <Upload className="mx-auto mb-2 h-8 w-8 text-brand-primary"/>
                                 <Label
                                     htmlFor="file"
                                     className="cursor-pointer rounded-lg bg-brand-primary px-4 py-2 font-semibold text-black hover:bg-brand-primary"
@@ -249,7 +249,7 @@ export function ProductForm({ categories }: ProductFormProps) {
                         </p>
                     )}
 
-                    <Button type="submit" className="w-full bg-brand-primary text-white hover:bg-brand-primary">
+                    <Button type="submit" className="w-full bg-brand-primary font-bold text-brand-primary-foreground hover:bg-brand-primary/85">
                         Criar produto
                     </Button>
                 </form>
